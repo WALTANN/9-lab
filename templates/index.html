@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Телефонная книга Лаба 9</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Пхоне бук</h1>
+        <form action="{{ url_for('add_contact') }}" method="post">
+            <label for="name">Наме of ёр френд🧐:</label>
+            <input type="text" id="name" name="name" pattern="[A-Za-zА-Яа-я]+" title="Please enter only letters" required>
+            <label for="phone">Пхоне of ёр френд😎:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9()+\- ]+" title="Please enter only numbers, '+', '-', '(', ')' and space" required>
+            <button type="submit">Add Contact</button>
+        </form>
+        
+        <h2>Контакты:</h2>
+        <ul>
+            {% for contact in phone_book %}
+                <li>{{ contact.name }}: {{ contact.phone }}</li>
+            {% endfor %}
+        </ul>
+
+        <form action="{{ url_for('clear_contacts') }}" method="post">
+            <button type="submit">Clear Contacts</button>
+        </form>
+    </div>
+</body>
+</html>
